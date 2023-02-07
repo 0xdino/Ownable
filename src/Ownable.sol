@@ -21,11 +21,11 @@ abstract contract Ownable {
         emit OwnershipTransferred(address(0), _owner);
     }
 
-    function owner() external view virtual returns (address) {
+    function owner() public view virtual returns (address) {
         return _owner;
     }
 
-    function transferOwnership(address newOwner) external virtual onlyOwner {
+    function transferOwnership(address newOwner) public virtual onlyOwner {
         emit OwnershipTransferred(_owner, newOwner);
         _owner = newOwner;
     }
