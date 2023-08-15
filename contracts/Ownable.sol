@@ -1,4 +1,5 @@
 // SPDX-License-Identifier: MIT
+// author 0xDino (https://github.com/0xdino)
 pragma solidity ^0.8.18;
 
 abstract contract Ownable {
