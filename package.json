@@ -4,16 +4,20 @@
   "description": "Allows ownership in smart contracts. This contract is better optimized and will spend less gas in transactions.",
   "main": "test/Ownable.ts",
   "scripts": {
-    "test": "npx hardhat coverage"
+    "compile": "npx hardhat compile",
+    "test": "npx hardhat test",
+    "test:gas": "cross-env REPORT_GAS=true npx hardhat test",
+    "test:coverage": "npx hardhat coverage"
   },
   "keywords": [],
-  "author": "@0xDino",
+  "author": "https://github.com/0xdino",
+  "repository": "https://github.com/0xdino/Ownable.git",
   "license": "MIT",
   "devDependencies": {
-    "@nomicfoundation/hardhat-toolbox": "^3.0.0",
-    "hardhat": "^2.17.1"
-  },
-  "dependencies": {
-    "solidity-coverage": "^0.8.4"
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "cross-env": "^7.0.3",
+    "hardhat": "^2.22.2",
+    "hardhat-gas-reporter": "^1.0.10",
+    "solidity-coverage": "^0.8.11"
   }
 }

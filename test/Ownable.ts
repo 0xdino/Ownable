@@ -3,10 +3,10 @@ import { expect } from "chai";
 import { ethers } from "hardhat";
 
 describe("Ownable", function () {
-  async function deployOneYearLockFixture() {
+  async function deploy() {
     const [owner, otherAccount] = await ethers.getSigners();
 
-    const Smart = await ethers.getContractFactory("Example");
+    const Smart = await ethers.getContractFactory("Owner");
     const smart = await Smart.deploy();
 
     return { smart, owner, otherAccount };
@@ -14,15 +14,13 @@ describe("Ownable", function () {
 
   describe("Validation function of the smart contract", function () {
     it("Should set the right owner", async function () {
-      const { smart, owner } = await loadFixture(deployOneYearLockFixture);
+      const { smart, owner } = await loadFixture(deploy);
 
       expect(await smart.owner()).to.equal(owner.address);
     });
 
     it("Should the correct translation of the ownership right.", async function () {
-      const { smart, owner, otherAccount } = await loadFixture(
-        deployOneYearLockFixture
-      );
+      const { smart, owner, otherAccount } = await loadFixture(deploy);
 
       await expect(
         smart.connect(otherAccount).transferOwnership(otherAccount.address)
@@ -34,9 +32,7 @@ describe("Ownable", function () {
     });
 
     it("Checking the execution of a function with the onlyOwner modifier", async function () {
-      const { smart, owner, otherAccount } = await loadFixture(
-        deployOneYearLockFixture
-      );
+      const { smart, owner, otherAccount } = await loadFixture(deploy);
 
       await expect(
         smart.connect(otherAccount).execution()
